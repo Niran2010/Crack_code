@@ -2,9 +2,9 @@ let generatedCode = '';
 let attempts = 0;
 let startTime;
 
-function generateCode() {
+function generateCode(length) {
     let code = '';
-    for (let i = 0; i < 6; i++) {
+    for (let i = 0; i < length; i++) {
         const randomCharCode = Math.floor(Math.random() * (126 - 32 + 1)) + 32; // Génère un code ASCII entre 32 et 126
         code += String.fromCharCode(randomCharCode); // Convertit le code ASCII en caractère
     }
@@ -12,7 +12,8 @@ function generateCode() {
 }
 
 function displayCode() {
-    generatedCode = generateCode();
+    const length = document.getElementById('length').value;
+    generatedCode = generateCode(length);
     document.getElementById('code').textContent = generatedCode;
 }
 
@@ -22,18 +23,18 @@ document.getElementById('submit').addEventListener('click', () => {
 
     if (inputCode === '') {
         document.getElementById('message').textContent = 'Veuillez entrer un code.';
-        document.getElementById('message').style.color = 'red'; // Rouge pour l'erreur
+        document.getElementById('message').style.color = 'red';
         return;
     }
 
     if (inputCode === generatedCode) {
         const timeTaken = ((new Date()) - startTime) / 1000; // Temps en secondes
         document.getElementById('stats').textContent = `Code trouvé ! Nombre de tentatives : ${attempts}, Temps écoulé : ${timeTaken.toFixed(2)} secondes.`;
-        document.getElementById('message').textContent = 'Code trouvé !'; // Affiche "Code trouvé !"
-        document.getElementById('message').style.color = 'green'; // Vert pour succès
+        document.getElementById('message').textContent = 'Code trouvé !';
+        document.getElementById('message').style.color = 'green';
     } else {
         document.getElementById('message').textContent = 'Code incorrect, réessayez.';
-        document.getElementById('message').style.color = 'red'; // Rouge pour l'erreur
+        document.getElementById('message').style.color = 'red';
     }
 });
 
@@ -43,4 +44,19 @@ function startGame() {
     startTime = new Date();
 }
 
+document.getElementById('length').addEventListener('input', (event) => {
+    const length = event.target.value;
+    document.getElementById('length-slider').value = length;
+    document.getElementById('length-display').textContent = length;
+    displayCode();
+});
+
+document.getElementById('length-slider').addEventListener('input', (event) => {
+    const length = event.target.value;
+    document.getElementById('length').value = length;
+    document.getElementById('length-display').textContent = length;
+    displayCode();
+});
+
+// Démarrer le jeu au chargement de la page
 startGame();

@@ -3,15 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Code de Vérification</title>
+    <title>Générateur de Code</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <div class="container">
-        <h1>Devine le Code</h1>
-        <div id="code-display" class="code-display">Code : <span id="code"></span></div>
-        <input type="text" id="input-code" placeholder="Saisissez un code à 6 chiffres" maxlength="6">
-        <button id="submit">Vérifier</button>
+        <h1>Générateur de Code Aléatoire</h1>
+        <div id="code" class="code"></div>
+        <input type="number" id="length" min="1" max="20" value="6" class="length-input">
+        <input type="range" id="length-slider" min="1" max="20" value="6" class="slider">
+        <div>Longueur : <span id="length-display">6</span></div>
+        <input type="text" id="input-code" placeholder="Entrez le code">
+        <button id="submit">Soumettre</button>
         <div id="message" class="message"></div>
         <div id="stats" class="stats"></div>
     </div>
