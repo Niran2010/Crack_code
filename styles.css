@@ -27,22 +27,26 @@ h1 {
     margin-bottom: 20px;
 }
 
-.length-input, .slider {
-    margin: 10px 0;
-    width: 100%;
-}
-
 .slider {
     -webkit-appearance: none;
     width: 100%;
-    height: 8px;
+    height: 6px; /* Taille réduite */
     background: #ddd;
     border-radius: 5px;
+    margin: 10px 0;
 }
 
 .slider::-webkit-slider-thumb {
     -webkit-appearance: none;
     appearance: none;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: #4CAF50;
+    cursor: pointer;
+}
+
+.slider::-moz-range-thumb {
     width: 20px;
     height: 20px;
     border-radius: 50%;

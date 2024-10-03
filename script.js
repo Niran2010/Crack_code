@@ -12,7 +12,7 @@ function generateCode(length) {
 }
 
 function displayCode() {
-    const length = document.getElementById('length').value;
+    const length = document.getElementById('length-slider').value; // Utiliser le slider
     generatedCode = generateCode(length);
     document.getElementById('code').textContent = generatedCode;
 }
@@ -32,6 +32,11 @@ document.getElementById('submit').addEventListener('click', () => {
         document.getElementById('stats').textContent = `Code trouvé ! Nombre de tentatives : ${attempts}, Temps écoulé : ${timeTaken.toFixed(2)} secondes.`;
         document.getElementById('message').textContent = 'Code trouvé !';
         document.getElementById('message').style.color = 'green';
+
+        // Réinitialiser le nombre de tentatives et le temps
+        attempts = 0;
+        startTime = new Date();
+        displayCode(); // Afficher un nouveau code
     } else {
         document.getElementById('message').textContent = 'Code incorrect, réessayez.';
         document.getElementById('message').style.color = 'red';
@@ -44,16 +49,8 @@ function startGame() {
     startTime = new Date();
 }
 
-document.getElementById('length').addEventListener('input', (event) => {
-    const length = event.target.value;
-    document.getElementById('length-slider').value = length;
-    document.getElementById('length-display').textContent = length;
-    displayCode();
-});
-
 document.getElementById('length-slider').addEventListener('input', (event) => {
     const length = event.target.value;
-    document.getElementById('length').value = length;
     document.getElementById('length-display').textContent = length;
     displayCode();
 });
