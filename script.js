@@ -5,7 +5,7 @@ let startTime;
 function generateCode() {
     let code = '';
     for (let i = 0; i < 6; i++) {
-        const randomCharCode = Math.floor(Math.random() * 128); // Génère un code ASCII entre 0 et 127
+        const randomCharCode = Math.floor(Math.random() * (126 - 32 + 1)) + 32; // Génère un code ASCII entre 32 et 126
         code += String.fromCharCode(randomCharCode); // Convertit le code ASCII en caractère
     }
     return code;
