@@ -3,7 +3,11 @@ let attempts = 0;
 let startTime;
 
 function generateCode() {
-    const code = Math.floor(100000 + Math.random() * 900000).toString();
+    let code = '';
+    for (let i = 0; i < 6; i++) {
+        const randomCharCode = Math.floor(Math.random() * 128); // Génère un code ASCII entre 0 et 127
+        code += String.fromCharCode(randomCharCode); // Convertit le code ASCII en caractère
+    }
     return code;
 }
 
