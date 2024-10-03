@@ -19,13 +19,19 @@ function displayCode() {
 
 document.getElementById('submit').addEventListener('click', () => {
     const inputCode = document.getElementById('input-code').value;
-    attempts++;
 
     if (inputCode === '') {
         document.getElementById('message').textContent = 'Veuillez entrer un code.';
         document.getElementById('message').style.color = 'red';
         return;
     }
+
+    // Démarrer le chrono seulement si un code est saisi pour la première fois
+    if (attempts === 0) {
+        startTime = new Date();
+    }
+
+    attempts++;
 
     if (inputCode === generatedCode) {
         const timeTaken = ((new Date()) - startTime) / 1000; // Temps en secondes
@@ -35,7 +41,6 @@ document.getElementById('submit').addEventListener('click', () => {
 
         // Réinitialiser le nombre de tentatives et le temps
         attempts = 0;
-        startTime = new Date();
         displayCode(); // Afficher un nouveau code
     } else {
         document.getElementById('message').textContent = 'Code incorrect, réessayez.';
@@ -46,7 +51,6 @@ document.getElementById('submit').addEventListener('click', () => {
 function startGame() {
     displayCode();
     attempts = 0;
-    startTime = new Date();
 }
 
 document.getElementById('length-slider').addEventListener('input', (event) => {
